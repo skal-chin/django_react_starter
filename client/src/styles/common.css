@@ -1,0 +1,102 @@
+/* COLORS */
+
+:root {
+    --color-primary: #b7b5f1;
+    --color-secondary: #E0DFFC;
+    --color-tertiary: #b1d1ab;
+    --color-quaternary: #3d405b;
+    --color-quinary: #81b29a;
+    --color-white: #f9f8f4;
+    --color-black: #0c0d13;
+    --color-gray: #d8d8d8;
+    --color-error: #b81b1b;
+    --color-success: #24b516;
+    --color-warning: #efd52af6;
+    --color-info: #cd5fef;
+    
+}
+
+/* GENERAL */
+
+/* box */
+.box {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-secondary);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* row */
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* column */
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* COMPONENTS */
+
+/* button */
+.button {
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;
+    width: 6rem;
+    margin: 0.5rem 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--color-quaternary);
+    color: var(--color-white);
+}
+
+.button:active {
+    background-color: var(--color-quinary);
+}
+
+/* input */
+.input {
+    width: 80%;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem;
+    border: 1px solid var(--color-gray);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    border: 1px solid var(--color-black);
+}
+
+.input-error {
+    border: 2px solid var(--color-error);
+}
+
+/* ERRORS */
+
+.error-text {
+    color: var(--color-error);
+    font-size: large;
+    margin: 0.5rem 0;
+}
+
+/* input error */
