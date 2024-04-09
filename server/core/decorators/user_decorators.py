@@ -1,14 +1,17 @@
 from core.managers.token_managers import TokenManager
+from core.utils.token_utils import TokenUtils
 
 from django.http import JsonResponse
 
 def validate_user(func):
     def wrapper(request, user_id, *args, **kwargs):
+        token_utils = TokenUtils()
+
         token = request.headers.get('Authorization')
         if not token:
             return JsonResponse({'error': 'Token is required'}, status=401)
         
-        decoded_token = TokenManager().decode_token(token)
+        decoded_token = token_utils.decode_token(token)
         if not decoded_token:
             return JsonResponse({'error': 'Invalid token'}, status=401)
         

@@ -27,6 +27,11 @@ from core.views import (
     sessions as SessionsView,
 )
 
+from test_auth.views import (
+    click as ClickView,
+    get_clicks as GetClicksView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', RegisterView, name='register'),
@@ -37,4 +42,6 @@ urlpatterns = [
     # test views
     path('test-token/', TestTokenView, name='test-token'),
     path('test-protected/', TestProtectedView, name='test-protected'),
+    path('click/', ClickView, name='click'),
+    path('get-clicks/<int:user_id>/', GetClicksView, name='get-clicks'),
 ]
