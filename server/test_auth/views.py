@@ -18,7 +18,7 @@ def click(request):
     user = User.objects.get(id=user_id)
 
     click = Click.objects.create_click(user)
-    return JsonResponse({'user_id': user_id, 'click_id': click.id}, status=201)
+    return JsonResponse({'id': click.id, 'clicked_at': click.clicked_at}, status=201)
 
 @api_view(['GET'])
 @validate_token

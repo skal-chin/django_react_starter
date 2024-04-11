@@ -18,7 +18,6 @@ export const Home = () => {
   const getClicks = async () => {
     const clicks = await api.get(`/get-clicks/${user.id}/`);
     setMyClicks(clicks.clicks);
-    console.log(clicks)
   };
 
   useEffect(() => {
@@ -36,6 +35,7 @@ export const Home = () => {
     }
 
     getClicks();
+
   }, [user])
 
   const logout = async () => {
