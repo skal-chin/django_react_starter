@@ -12,11 +12,41 @@ The frontend uses React and React Router to create a single-page application wit
 
 This is a simple project that is a good launching point for creating a full-stack web application.
 
+### *Contents*
+
+- [Documentation](#documentation)
+- [More Docs](#more-docs)
+- [Getting Started](#getting-started)
+    - [Setting up your .envs](#setting-up-your-envs)
+    - [Starting the server](#starting-the-server)
+    - [Starting the client](#starting-the-client)
+- [Usage](#usage)
+    - [Extending the server through the 'core' app](#extending-the-server-through-the-core-app)
+    - [Extending the server by a new app](#extending-the-server-by-a-new-app)
+
 ### *Documentation*
 
 [Here](/docs/schemas/models.md) is a list of models used in the app.
 
 [Here](/docs/schemas/views.md) is a list of views used in the app.
+
+
+### *More Docs*
+
+- Getting Started
+    - [Client](/docs/getting_started/client.md)
+    - [Envs](/docs/getting_started/envs.md)
+    - [Server](/docs/getting_started/server.md)
+    - [Yarn](/docs/getting_started/yarn.md)
+- Schemas
+    - [Models](/docs/schemas/models.md)
+    - [Session Views](/docs/schemas/session_views.md)
+    - [Test Views](/docs/schemas/test_views.md)
+    - [User Views](/docs/schemas/user_views.md)
+- Usage
+    - [Extending the server through the 'core' app](/docs/usage/extend_by_core.md)
+    - [Extending the server by a new app](/docs/usage/extend_by_app.md)
+- [Demo GIF](/docs/demo.gif)
 
 ### *Getting Started*
 
@@ -247,7 +277,7 @@ def click(request):
     user = User.objects.get(id=user_id)
 
     click = Click.objects.create_click(user)
-    return JsonResponse({'user_id': user_id, 'click_id': click.id}, status=201)
+    return JsonResponse({'id': click.id, 'clicked_at': click.clicked_at}, status=201)
 
 @api_view(['GET'])
 @validate_token
@@ -305,6 +335,8 @@ python manage.py migrate
 <span style="color:red">9.</span> To test the new views, the home page on the client side was modified to include a button that sends a POST request to the new click view. The following code was added to the `client/src/components/home/_home.js` file.
 
 <span style="color:red">10.</span> Run the server and client to test the new views.
+
+![demo gif](/docs/demo.gif)
 
 
 
