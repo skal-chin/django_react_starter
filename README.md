@@ -180,7 +180,7 @@ from core.decorators.user_decorators import validate_user
 
 @api_view(['GET'])
 @validate_token
-@validate_user
+@validate_user      # add the decorator
 def get_user(request, user_id):
     user = User.objects.get(id=user_id)
     return JsonResponse({'user': {'id': user.id, 'username': user.username, 'email': user.email}}, status=200)
