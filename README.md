@@ -24,6 +24,8 @@ This is a simple project that is a good launching point for creating a full-stac
     - [Using the authentication system](#using-the-authentication-system)
     - [Extending the server through the 'core' app](#extending-the-server-through-the-core-app)
     - [Extending the server by a new app](#extending-the-server-by-a-new-app)
+    - [Email Validation Rules](#email-validation-rules)
+    - [Password Validation Rules](#password-validation-rules)
 
 ### *Documentation*
 
@@ -48,6 +50,8 @@ This is a simple project that is a good launching point for creating a full-stac
     - [Using the authentication system](/docs/usage/using_auth_system.md)
     - [Extending the server through the 'core' app](/docs/usage/extend_by_core.md)
     - [Extending the server by a new app](/docs/usage/extend_by_app.md)
+    - [Email Validation Rules](/docs/usage/email_rules.md)
+    - [Password Validation Rules](/docs/usage/password_rules.md)
 - [Demo GIF](/docs/demo.gif)
 
 ### *Getting Started*
@@ -389,7 +393,84 @@ python manage.py migrate
 
 ![demo gif](/docs/demo.gif)
 
+#### Email Validation Rules
 
+The rules for email validation are in the utils files `validate_email.py` and `validateEmail.js` for the server and client respectively. Validation happens on both ends of the project. These files can be found in the `server/core/utils` and `client/src/utils` directories. If there are any desired deletions or additions to these rules, please make the changes in both files and refer to the list of rules below.
 
+There are constants built into both files that can be changed to adjust the rules. The constants are as follows:
+
+- `SPECIAL_CHARS` - A list of the special characters that are used to check for doubles in the local portion, starts and ends in the local and domain portions, and the domain portion itself.
+
+- `ALLOWED_CHARS` - A list of the allowed special characters that can be used in the domain portion.
+
+- `MAX_LOCAL_LENGTH` - The max length of the local portion. The current max length is 64.
+
+- `MAX_DOMAIN_LENGTH` - The max length of the domain portion. The current max length is 255.
+
+- `MAX_SUBDOMAIN_LENGTH` - The max length of the subdomain. The current max length is 63.
+
+- `MAX_EMAIL_LENGTH` - The max length of the email. The current max length is 320.
+
+General rules for email validation are as follows:
+
+1. The email is the max length of the local portion (the part before the `@` symbol) and the domain portion (the part after the `@` symbol) combined, plus 1 for the _@_ symbol. **The current max length is 320.**
+
+2. Cannot be empty.
+
+3. Must contain an `@` symbol.
+
+4. Cannot contain any spaces. Email addresses can contain spaces if they are enclosed in double quotes, but this is not supported.
+
+Local portion rules:
+
+1. Cannot be empty or longer than the max length of 64.
+
+2. Cannot contain double special characters (e.g. `..`).
+
+3. Cannot start or end in a special character.
+
+Domain portion rules:
+
+1. Cannot be empty or longer than the max length of 255.
+
+2. Cannot contain a special character, except for the allowed special characters.
+
+Subdomain rules:
+
+1. There must be at least 2 subdomains, the domain and the top-level domain (TLD).
+
+2. The subdomain cannot be empty or longer than the max length of 63.
+
+3. Cannot start or end in a special character.
+
+4. The TLD is at least 2 characters long.
+
+These are the current rules for email validation. There are plenty of other rules that can be added, but these are the common ones. There are also REGEX patterns that can be used to validate emails, but these were written to allow for easier readability and maintainability.
+
+#### Password Validation Rules
+
+The rules for password validation are in the utils files `validate_password.py` and `validatePassword.js` for the server and client respectively. Validation happens on both ends of the project. These files can be found in the `server/core/utils` and `client/src/utils` directories. If there are any desired deletions or additions to these rules, please make the changes in both files and refer to the list of rules below.
+
+Regular expressions are used to validate the password. They are used here, because they are simpler to read and maintain in this instance. The expressions are held in constants on both the server and client side. The constants are as follows:
+
+- `UPPER_REGEX` - A regular expression that checks for at least one uppercase letter.
+
+- `LOWER_REGEX` - A regular expression that checks for at least one lowercase letter.
+
+- `DIGIT_REGEX` - A regular expression that checks for at least one digit.
+
+- `SPECIAL_REGEX` - A regular expression that checks for at least one special character.
+
+The rules for password validation are as follows:
+
+1. The password must be at least 8 characters long.
+
+2. The password must contain at least one uppercase letter.
+
+3. The password must contain at least one lowercase letter.
+
+4. The password must contain at least one digit.
+
+5. The password must contain at least one special character.
 
 
